@@ -1,0 +1,32 @@
+Object Detection papers
+------------------------
+
+
+MultiBox (basics of object detection)
+Scalable Object Detection using Deep Neural Networks
+Dumitru Erhan, Christian Szegedy, Alexander Toshev, Dragomir Anguelov
+Google
+https://arxiv.org/pdf/1312.2249.pdf
+
+
+SSD: Single Shot MultiBox Detector
+Wei Liu1, Dragomir Anguelov2, Dumitru Erhan3, Christian Szegedy3, Scott Reed4 , Cheng-Yang Fu1, Alexander C. Berg1
+1UNC Chapel Hill 2Zoox Inc. 3Google Inc. 4University of Michigan, Ann-Arbor
+https://arxiv.org/pdf/1512.02325.pdf
+
+YOLO:
+https://arxiv.org/pdf/1506.02640.pdf
+
+YOLOv2
+https://arxiv.org/pdf/1612.08242.pdf
+
+FocalLoss:
+https://arxiv.org/pdf/1708.02002.pdf
+
+Deformable Parts Models:
+https://www.cs.cmu.edu/~efros/courses/LBMV09/presentations/latent_presentation.pdf
+http://vision.cs.utexas.edu/381V-spring2016/slides/teammco-paper.pdf
+http://www.rossgirshick.info/latent/
+https://github.com/rbgirshick/voc-dpm
+Object Detection with Discriminatively Trained Part Based Models
+https://dl.dropboxusercontent.com/s/u1rvydtkt9nioyq/Object-Detection-with-Discriminatively-Trained-Part-Based-Models--Felzenszwalb-Girshick-McAllester-Ramanan.pdf?dl=0

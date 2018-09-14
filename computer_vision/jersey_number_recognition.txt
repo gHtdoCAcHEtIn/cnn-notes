@@ -1,0 +1,35 @@
+SVHN
+--------
+
+SVHN dataset
+http://ufldl.stanford.edu/housenumbers/
+
+SVHN state of the art
+http://rodrigob.github.io/are_we_there_yet/build/classification_datasets_results.html#5356484e
+
+Jersey Recognition
+--------------------
+
+Multi-digit Number Recognitionfrom Street View Imagery using Deep Convolutional Neural Networks
+Ian Goodfellow, Yaroslav Bulatov, Julian Ibarz, Sacha Arnoud, Vinay Shet
+https://arxiv.org/pdf/1312.6082.pdf
+
+Jersey number detection in sports video for athlete identification
+Quixiang Ye, Qingming Huan, Shuqiang Jiang, Yang Liu, Wen Gao
+https://pdfs.semanticscholar.org/2104/6e502bfd318b0bc5fc2cbeea33006adf8535.pdf
+
+Basketball Player Identification by Jersey and Number Recognition
+Jeremy Ephrati, Navid Moghadam
+https://stacks.stanford.edu/file/druid:yj296hj2790/Ephrati_Moghadam_Basketball_players_recognition.pdf
+
+Socker Jersey Number Recognition Using Convolutional Neural Networks
+Sebastian Gerke, Karsten Muller
+http://openaccess.thecvf.com/content_iccv_2015_workshops/w21/papers/Gerke_Soccer_Jersey_Number_ICCV_2015_paper.pdf
+
+Identifying Players in Broadcast Sports Videos using Conditional Random Fields
+Wei-Lwun Lu, Jo-Anne Ting, Kevin P Murphy, James J Little
+https://www.cs.ubc.ca/~murphyk/Papers/cvpr2011-camera.pdf
+
+Learning to Track and Identify Players from Broadcast Sports Videos
+Wei-Lwun Lu, Jo-Anne Ting, James J Little, Kevin P Murphy
+http://www.cs.ubc.ca/~murphyk/papers/weilwun-pami12.pdf

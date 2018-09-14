@@ -1,0 +1,29 @@
+Arxiv PDF: Obstacle avoidance using stereo camera
+https://arxiv.org/ftp/arxiv/papers/1705/1705.04114.pdf
+
+Fundamental guide to stero vision in robotices
+(tutorials and resources)
+https://www.intorobotics.com/fundamental-guide-for-stereo-vision-cameras-in-robotics-tutorials-and-resources/
+
+  Calculating a depth map from stereo camera with OpenCV
+  https://albertarmea.com/post/opencv-stereo-camera/
+  (has OpenCV C++ code samples)
+
+  Web Article: Compute disparity map in OpenCV
+  https://glowingpython.blogspot.com/2011/11/computing-disparity-map-in-opencv.html
+  (has OpenCV Python code samples)
+
+
+Motion Planning:
+
+  Motion Planniing:
+    https://en.wikipedia.org/wiki/Motion_planning
+  Open Motion Planning Library (Wikipedia)
+    https://en.wikipedia.org/wiki/OMPL
+  MoveIt (from ROS)
+    Navigation/Manipulation libraries in ROS for various manipulators
+  Motion Planning w/ Kinematics and Dynamics
+    http://www.robotmotionplanning.org/teaching/LecRoboDynamics.pdf
+    Other lectures @ http://www.robotmotionplanning.org/TeachingRobotics.html
+    
+    

@@ -1,0 +1,68 @@
+LeNet-5
+Neural Computing 1989
+Backpropagation applied to handwritten zip code recognition. 
+Yann LeCun, B. Boser, J. S. Denker, D. Henderson, R. E. Howard, W. Hubbard, and L. D. Jackel.
+
+
+AlexNet
+NIPS 2012
+ImageNet Classification with Deep Convolutional Neural Networks
+Alex Krizhevsky, Ilya Sutskever, Geoffrey E. Hinton
+University of Toronto
+http://www.cs.toronto.edu/~kriz/imagenet_classification_with_deep_convolutional.pdf
+http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf
+
+
+VGG-16/VGG-19
+ICLR 2015 (ILSVRC 2014)
+Very Deep Convlutional  Networks for Large-Scale Image Recognition 
+Karen Simonyan & Andrew Zisserman
+Oxford University
+https://arxiv.org/pdf/1409.1556.pdf
+
+
+Inception-v1/GoogLeNet-22
+... (ILSVRC 2014 as GoogLeNet)
+Going Deeper with Convolutions
+Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir Anguelov, Dumitru Erhan, Vincent Vanhoucke, Andrew Rabinovich
+Google
+https://arxiv.org/pdf/1409.4842.pdf
+(inception modules with 1x1 bottlenecks)
+(auxiliary classifiers)
+
+
+Inception-v2 aka Inception-BN
+Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
+Sergey Ioffe, Christian Szegedy
+Google
+https://arxiv.org/pdf/1502.03167.pdf
+(add batch normalization)
+(factorizing into smaller convolutions, ex. replace 5x5 with two successive 3x3 convolutions)
+
+
+ResNet-50/152
+CVPR2016 / ILSVRC2015
+Deep Residual Learning for Image Recognition
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+Microsoft Research
+https://arxiv.org/pdf/1512.03385.pdf
+
+
+Inception-v2 / -v3
+Rethinking the Inception Architecture for Computer Vision
+Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens
+Google Inc.
+https://arxiv.org/pdf/1512.00567.pdf
+(factorizing into smaller convolutions, ex. replace 5x5 with two successive 3x3 convolutions)
+(grid reduction with conv+pool parallel ops)
+(Factorizing into assymetric convolutions n*n=1*n+n*1)
+(Batch Normalizing the FC layer (not just conv) of auxilary branches = Inception-v3)
+
+
+Inception-v4, Inception-ResNet
+Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning
+Christian Szegedy, Sergey Ioffe, Vincent Vanhoucke
+Google Inc.
+https://arxiv.org/pdf/1602.07261.pdf
+(reorganize Inception-v3 to Inception-v4 in Tensorflow)
+(add Resnet to Inception = Inception-Resnet-v1 and Inception-Resnet-v2)

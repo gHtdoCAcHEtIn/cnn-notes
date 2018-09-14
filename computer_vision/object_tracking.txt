@@ -1,0 +1,132 @@
+Current Reading:
+TLD: http://epubs.surrey.ac.uk/713800/1/Kalal-PAMI-2011%281%29.pdf
+CCOT: http://www.cvl.isy.liu.se/research/objrec/visualtracking/conttrack/C-COT_ECCV16.pdf
+Long-term Tracking in the Wild: https://arxiv.org/pdf/1803.09502.pdf
+FCLT - Fully Correlational Long-term Tracker: https://arxiv.org/pdf/1711.09594.pdf
+Circulant / KCF: https://arxiv.org/pdf/1404.7584.pdf
+
+
+Object Detection
+----------------
+
+(HoG) Dalal N, Triggs B (2005) Histograms of oriented gradients for human detection
+(DPM) Felzenszwalb P, Girshick R, McAllester D, Ramanan D (2010) Object detection with discriminatively trained part-based models
+(CNN etc.)
+
+Object Tracking:
+----------------
+
+Short-term, model-free visual object tracking is the problem of continuously localizing a target in a video sequence given a single example of its appearance
+
+MACE filter (before DCF)
+MAC = Minimum Average Correlation Energy
+Paper: Face Verification using Correlation Filters
+M Savvides, B V K Vijaya Kumar, P Khosla
+https://users.ece.cmu.edu/~kumar/Biometrics_AutoID.pdf
+
+
+The standard formulation of DCF uses circular correlation which allows to implement learning efficiently by Fast Fourier transform (FFT)
+
+Bolme et al (2010) (== MOSSE, based on DCF)
+MOSSE = minimum output sum of squared error
+uses grayscale template
+uses least squares to optimize best filter (H_*) for given training images (f_i) and training outputs (g_i)
+f_i is training image (target)
+g_i is a gaussian with some sigma, and peak at the center of target
+h is such that f_i ** h = g_i in convolution sense
+in fourier domain, F_i .* H_* = G_i (element wise multiply)
+Optimization for all images : H = argmin(H) sigma_sum(i) L2(F_i .* H_* - G_i)
+Goal is to find the filter H that minimizes sum of squared output error.
+Since this is elementwise multiplication, each element in H can be optimized independently.
+H_wv = argmin(H_wv) sigma_sum(i) L2(F_iwv .* H_*_wv - G_iwv); where w,v index the elements of H
+(derivation of closed-form solution in Appendix A of the paper)
+
+DCF improvements:
+
+In the first group, [Add features]
+- Henriques et al (2015) [KCF] replaced the grayscale templates by HoG (Dalal and Triggs, 2005), 
+- Danelljan et al (2014b) proposed multi-dimensional color attributes and 
+- Li and Zhu (2014b) applied feature combination. 
+- Recently, convolutional network features learned for object detection have been applied (Ma et al, 2015; Danelljan et al, 2015b, 2016), leading to a performance boost, but at a cost of significant speed reduction.
+
+Conceptually, [improvements in filter learning]
+- the first successful theoretical extension of the standard DCF was the kernelized formulation by Henriques et al (2015) which achieved remarkable tracking performance, but still preserved high speed. 
+- Later, a  correlation filter based scale adaptation was proposed by Danelljan et al (2014a) introduced a scale-space pyramid learned within a correlation filter framework. 
+- Zhang et al (2014) introduced spatio-temporal context learning in the DCFs. 
+- To improve localization with correlation filters, Bertinetto et al (2016a) proposed a tracking method that combines the output of the correlation filter with the target segmentation probability map. 
+- Danelljan et al (2016) addressed a multiple-resolution feature map issue in correlation filters by formulating filter learning in continuous space, while 
+- Qi et al (2016) proposed a mechanism to combine correlation responses from multiple convolutional layers. 
+- A correlation filter tracker which is able to handle drifts in longer sequences was proposed by Wang et al (2016). It clusters similar target appearances together and uses the clusters for target localization instead of a single online learned filter
+
+Window/Spatial problems (filter being limited to target size) were solved 
+- by Kiani Galoogahi et al (2015) who propose zero-padding the filter during learning, and 
+- by Danelljan et al (2015a) who introduce spatial regularization to penalize filter values outside the target boundaries
+
+
+(DCF Discriminative Correlation Filter, also equal to MOSSE)
+Visual Object Tracking with Adaptive Correlation Filters
+Bolme et al (2010) = MOSSE tracker based on discriminative correlation filter method
+http://www.cs.colostate.edu/~vision/publications/bolme_cvpr10.pdf
+
+(KCF: Kernelized Correlation Filter)
+High Speed Tracking with Kernelized Correlation Filter
+Henriques JF, Caseiro R, Martins P, Batista J (2015)
+https://arxiv.org/pdf/1404.7584.pdf
+Exploiting the Circulant Structure of Tracking-by-Detection with Kernels
+Henriques, Caseiro, Martins, Batista
+http://www.robots.ox.ac.uk/~joao/publications/henriques_eccv2012.pdf
+Henriques website: http://www.robots.ox.ac.uk/~joao/circulant/index.html
+
+Danelljan M, Hager G, Khan FS, Felsberg M (2014a) Accurate scale estimation for robust visual tracking. 
+Danelljan M, Khan FS, Felsberg M, van de Weijer (2014b) Adaptive color attributes for real-time visual tracking. 
+Danelljan M, Hager G, Shahbaz Khan F, Felsberg (2015a) Learning spatially regularized correlation filters for visual tracking. 
+Danelljan M, Hager G, Khan FS, Felsberg M (2015b) Convolutional features for correlation filter based visual tracking. 
+Danelljan M, Robinson A, Khan FS, Felsberg M (2016) Beyond correlation filters: learning continuous convolution operators for visual tracking. 
+Danelljan M, Hager G, Khan FS, Felsberg M (2017) Discriminative scale space tracking.
+
+(C-COT: Continuous Correlation Operators for Tracking)
+Beyond Correlation Filters: Learning Continuous Convolution Operators for Visual Tracking
+Denalljan et al (2016)
+http://www.cvl.isy.liu.se/research/objrec/visualtracking/conttrack/C-COT_ECCV16.pdf
+
+(CSR-DCF: Channel and Spatial Reliability + DCF) -- very good review of past research papers
+Discriminative Correlation Filter Tracker with Channel and Spatial Reliability
+https://arxiv.org/pdf/1611.08461.pdf
+Example: https://github.com/alanlukezic/csr-dcf
+
+OpenCV Example Introduction to Tracker
+https://docs.opencv.org/3.1.0/d2/d0a/tutorial_introduction_to_tracker.html
+OpenCV cv::Tracker class reference
+https://docs.opencv.org/3.4.0/d0/d0a/classcv_1_1Tracker.html
+OpenCV Tracking API
+https://docs.opencv.org/3.2.0/d9/df8/group__tracking.html
+
+
+Comparison of OpenCV trackers
+https://www.matec-conferences.org/articles/matecconf/pdf/2016/39/matecconf_cscc2016_04031.pdf
+
+TLD: Tracking - Learning - Detection
+Zdenek Kalal, Krystian Mikolajczyk, Jiri Matas
+http://epubs.surrey.ac.uk/713800/1/Kalal-PAMI-2011%281%29.pdf
+
+
+Kalman Filter
+
+Long-term Tracking in the Wild
+Valmadre, Bertinetto, Heriques, Tao, Vedaldi, Smeulders, Torr, Gavves
+https://arxiv.org/pdf/1803.09502.pdf
+
+FCLT - Fully Correlational Long-term Tracker
+https://arxiv.org/pdf/1711.09594.pdf
+
+
+
+opencv trackers overview:
+Comparison of tracking algorithms implemented in OpenCV
+Peter Janku, Karel Koplik, Tomas Dulik, and Istvan Szabo
+https://www.matec-conferences.org/articles/matecconf/pdf/2016/39/matecconf_cscc2016_04031.pdf
+
+visual tracking benchmark datasets
+http://cvlab.hanyang.ac.kr/tracker_benchmark/datasets.html
+
+

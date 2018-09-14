@@ -1,0 +1,99 @@
+--------- RPN ---------------
+image
+(shared conv stem)
+N features HxW (7x7 typ)
+(RPN - 3x3 conv, 512 filter layer)
+512 feature vector for each 7x7 location
+(RPN - 1x1 conv, 36 filter layer for bbox regression)
+36 x 7x7 (4 coordinates * 9 anchors)
+(RPN - 1x1 conv, 18 filter layer for binary classification
+18 x 7x7 (2 classes {0:not-object, 1:object} * 9 anchors)
+
+groundtruth:
+    compute IOU with all groundtruth boxes for this image
+    select positive anchors if IOU > 0.7 -- mark cls=1 as gt object
+    select negative anchors if IOU < 0.3 -- mark cls=0 as gt non-object
+    fill negative anchors as necessary
+
+this output is trained using multi task loss
+L = L_binary_classification + [gt_cls != 0_background] L_regression
+L_binary_classification = sum[images_in_batch, anchors 9x7x7, classes 0,1]: -log(probability(pred == class))
+                        = sum[images_in_batch, anchors 9x7x7]: - gt_cls * log(pred_cls) - (1-gt_cls) * log(1-pred_cls)
+
+L_regression = sum[images_in_batch, anchors 9x7x7, coordinates 4]: L1Smooth(t - t^*)))
+    where tx  = x -xa/wa, ty  = y -ya/wa, tw  = log(w /wa), th  = log(h /ha) ; a=anchors
+          tx* = x*-xa/wa, ty* = y*-ya/wa, tw* = log(w*/wa), th* = log(h*/ha) ; *=groundtruth box
+    (scale invariant translation, log-space height/width/size shift)
+
+inference time
+image produces many region proposals
+trim to ~2000 by NMS based on their cls scores (also object/non-object)
+(IOU threshold for NMS is fixed to 0.7) [cls scores account for high accuracy]
+[reg scores account for high quality proposals]
+
+
+
+
+--------------- FAST RCNN --------------------
+
+
+image
+(shared conv stem)
+N features HxW (16x16 typ)
+(FRCNN - 7x7 output ROI Pool)
+N x 7x7 (N length feature vector for a fixed 7x7 grid)
+(FRCNN - conv/fc layers)
+(FRCNN - conv/fc layers)
+(FRCNN - 1x1 conv/fc layers, K*4 coordinates for bbox regression)
+(FRCNN - 1x1 conv/fc layers, K+1 long probability distribution for classification)
+
+groundtruth:
+    compute IOU with all groundtruth boxes for this image
+    select foreground RoIs if IOU > 0.5 -- mark cls=cls from gt class, and bbox coordinates from gt_box (u>=1)
+    select background RoIs if IOU < (0.1, 0.5) -- mark cls=0 as gt_background (u=0)
+
+this output is trained using multi task loss
+L = L_multiclass_classification + [u != background] L_regression
+L_regression = sum[images_in_batch, anchors 9x7x7, coordinates 4]: L1Smooth(t - t^*)))
+    where tx = x-x*/w*, ty = y-y*/w*, tw = log(w/w*), th = log(h/h*); *=groundtruth
+    (scale invariant translation, log-space height/width/size shift)
+L_multiclass_classification = sum[images_in_batch, anchors 9x7x7, classes 0,1]: -log(probability(pred == class))
+                            = sum[images_in_batch, anchors 9x7x7]: - gt_cls * log(pred_cls) - (1-gt_cls) * log(1-pred_cls)
+L1Smooth(x) = 0.5x^2 if |x|<1; |x|-0.5 otherwise
+<put diagram>
+
+inference time
+for each image, R(typ 2000) proposals are used
+for each proposal, model computes probability distribution p, & set of bbox offsets relative to proposal
+apply NMS over bbox outputs using detection confideence = probality distribution
+
+
+
+-------------------- MaskRCNN ---------------------
+add mask network to produce class-specific masks
+in the second stage of FasterRCNN, in parallel to prediction class and box offset, model also outputs a binary mask for each ROI
+roialign
+ROI align is important since ROI Pool quantizes locations
+each ROI is floatin point location markers
+In ROIPool, ROI is quantized to feature map indices, (for x coordinates ==> round(x/16) if 16 is feature map size)
+it is subdivided into spatial bins on hxw grid, and quantized again to the grid (for round( (round(x/16)/7 )
+
+ROI Align
+use bilinear interpolation to compute exact feature value at say, four sampling locations, then max or average pool
+
+loss
+L = Lcls + Lbox + Lmask
+mask output is Kxmxm for each ROI (K classes, mxm spatial output)
+we apply per pixel sigmoid to the mask output
+Lmask is then average binary cross entropy loss
+Lmask = sum[:images_in_batch][:ROIs][:select kth mask for known kth class] (-log p)
+No competition between classes, as this task is handled by classification layer
+
+
+
+
+papers:
+RCNN        https://arxiv.org/pdf/1311.2524.pdf
+FastRCNN    https://arxiv.org/pdf/1504.08083.pdf
+FasterRCNN  https://arxiv.org/pdf/1506.01497.pdf
+MaskRCNN    https://arxiv.org/pdf/1703.06870.pdf
