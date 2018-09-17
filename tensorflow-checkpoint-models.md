@@ -157,6 +157,54 @@ with tf.Session() as sess:
 ##Model has been restored. Above statement will print the saved value of w1.
 ```
 
+## Freezing Checkpoint files
+
+For a temp training directory like this:
+
+```
+checkpoint
+events.out.tfevents.1537203360.fc4e9a2930e6
+events.out.tfevents.1537203745.fc4e9a2930e6
+graph.pbtxt
+model.ckpt-199334.data-00000-of-00001
+model.ckpt-199334.index
+model.ckpt-199334.meta
+model.ckpt-266033.data-00000-of-00001
+model.ckpt-266033.index
+model.ckpt-266033.meta
+model.ckpt-332756.data-00000-of-00001
+model.ckpt-332756.index
+model.ckpt-332756.meta
+model.ckpt-399494.data-00000-of-00001
+model.ckpt-399494.index
+model.ckpt-399494.meta
+model.ckpt-466313.data-00000-of-00001
+model.ckpt-466313.index
+model.ckpt-466313.meta
+
+```
+
+Say, we choose to freeze model # 399494. Copy the following files to a new directory like this:
+
+```
+graph.pbtxt
+model.ckpt-399494.data-00000-of-00001
+model.ckpt-399494.index
+```
+
+Specify the `ckpt` file to `freeze_graph` utility like the following. 
+Note that we need only the `.index` and the `.data-<0>-of-<n>` file(s) as the checkpoint file. 
+
+```bash
+bazel-bin/tensorflow/python/tools/freeze_graph \
+  --input_graph=graph.pbtxt
+  --input_checkpoint=model.ckpt-399494 \
+  --input_binary=false \
+  --output_graph=lenet_frozen_graph.pb \
+  --output_node_names=Predictions/Reshape_1
+```
+Note that `input_binary` is `false`, since the graph is in a `.pbtxt` file and in ASCII format. If the graph was in binary format, `input_binary` should be set to `true`.
+
 
 ## References:
 [Complete Tutorial to save and restore Tensorflow models](https://cv-tricks.com/tensorflow-tutorial/save-restore-tensorflow-models-quick-complete-tutorial/)
