@@ -4,5 +4,11 @@ Guide to freeze graph and deploy in TF C++
 [link](https://medium.com/@hamedmp/exporting-trained-tensorflow-models-to-c-the-right-way-cf24b609d183)
 
 
-The guide follows the same process as [tensorflow-freeze-guide.md](tensorflow-freeze-guide.md). 
-Additional step is to modify the `label_image` tf/c++ example for custom application, and `bazel build` it.
+## Freeze
+
+* Follow the guide in [tensorflow-freeze-guide.md](tensorflow-freeze-guide.md) for freezing a tensorflow model.
+
+## Deploy
+
+* For deploy, duplicate the `label_image` tf/c++ example, and modify for custom application.
+* Build your application using `bazel build`.
