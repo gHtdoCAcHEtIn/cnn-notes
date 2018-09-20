@@ -6,7 +6,7 @@ Guide to freeze graph and deploy in TF C++
 
 ## Freeze
 
-* Follow the guide in [tensorflow-freeze-guide.md](tensorflow-freeze-guide.md) for freezing a tensorflow model.
+* Follow the guide in [tensorflow-slim-freeze-models-guide.md](tensorflow-slim-freeze-models-guide.md) for freezing a tensorflow model.
 
 ## Deploy
 
