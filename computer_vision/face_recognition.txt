@@ -1,0 +1,27 @@
+Ageitgey/Face Recognition
+github:
+https://github.com/ageitgey/face_recognition
+https://github.com/ageitgey/face_recognition_models
+github wiki: Face Recognition Accuracy Problems
+https://github.com/ageitgey/face_recognition/wiki/Face-Recognition-Accuracy-Problems
+github wiki: save encodings to a file:
+https://github.com/ageitgey/face_recognition/wiki/How-do-I-save-face-encodings-to-a-file%3F
+face_recognition API docs on readthedocs.io
+http://face-recognition.readthedocs.io/en/latest/face_recognition.html
+medium article:
+https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognition-with-deep-learning-c3cffc121d78
+github.gist: step_1_find_faces.py
+https://gist.github.com/ageitgey/1c1cb1c60ace321868f7410d48c228e1
+Scikit-image: Face Detection w/ HOG.py
+http://scikit-image.org/docs/0.13.x/auto_examples/features_detection/plot_hog.html#sphx-glr-auto-examples-features-detection-plot-hog-py
+
+
+Face Recognition Papers:
+Harihara Santosh Dadi, Gopala Krishna Mohan Pillutla: Improved Face Recognition Rate Using HOG Features and SVM Classifier
+Xiang-Yu Li and Zhen-Xian Lin: Face Recognition Based on HOG and Fast PCA Algorithm
+
+
+Face Datasets:
+LFW (Labeled Faces in the Wild)
+http://vis-www.cs.umass.edu/lfw/number_11.html
+

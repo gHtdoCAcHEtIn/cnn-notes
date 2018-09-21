@@ -1,0 +1,52 @@
+Segmentation
+
+Articles/Papers:
+# W-Net
+Xide Xia, Brian Kulis, W-Net: A Deep Model for Fully Unsupervised Image Segmentation
+https://arxiv.org/pdf/1711.08506.pdf
+# Canny Edge Detector
+https://en.wikipedia.org/wiki/Canny_edge_detector
+gPb - owt - ucm (cites Pb)
+Pablo Arbelaez, Michael Maire, Charless Fowlkes, Jitendra Malik: Contour Detection and Hierarchical Image Segmentation
+https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/papers/amfm_pami2010.pdf
+(slides) http://vision.stanford.edu/teaching/cs231b_spring1213/slides/contour_segmentation.pdf
+Pb (cites Textons paper)
+David R. Martin, Charless C. Fowlkes, Jitendra Malik: Learning to Detect Natural Image Boundaries Using Local Brightness, Color, and Texture Cues
+https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/papers/mfm-pami-boundary.pdf
+Textons (cited in Pb)
+Malik, Belongie, Leung, Shi: Contour and Texture Analysis for Image Segmentation
+https://people.eecs.berkeley.edu/~malik/papers/MalikBLS.pdf
+Reweight affinity matrix in Normalized Cuts (cited in gPb paper)
+Tolliver, Miller, Graph partitioning by spectral rounding: Applications in image segmentation and clustering
+http://www.cs.cmu.edu/~glmiller/Publications/TolliverMiller06.pdf
+
+
+Spectral Graph Theory
+Normalized Cuts
+Jianbo Shi, Jitendra Malik: Normalized Cuts and Image Segmentation
+https://people.eecs.berkeley.edu/~malik/papers/SM-ncut.pdf
+Lapacian Matrix = L = D - W of a simple Graph
+https://en.wikipedia.org/wiki/Laplacian_matrix
+Book on Spectral Graph Theory
+Fan Chung: Spectral Graph Theory
+http://www.math.ucsd.edu/~fan/research/revised.html
+Ch1 (very interesting): http://www.math.ucsd.edu/~fan/research/cb/ch1.pdf
+Multiscale Normalized Cuts
+Cour, Benezit, Shi: Spectral Segmentation with Multiscale Graph Decomposition
+https://repository.upenn.edu/cgi/viewcontent.cgi?referer=https://www.google.com/&httpsredir=1&article=1231&context=cis_papers
+
+Code:
+gPb Matlab code
+https://github.com/vrabaud/gPb
+BSDS Code
+(all): https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/code/
+(dataset): https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/code/Dataset/
+(example): https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/BSDS300/html/dataset/images/color/159029.html
+
+
+Datasets:
+Cityscapes: https://www.cityscapes-dataset.com/
+(benchmarks): https://www.cityscapes-dataset.com/benchmarks/
+BSDS (Berkeley segmentation data set)
+https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/
+

@@ -1,0 +1,7 @@
+* Simple Online & Realtime Tracking (SORT)
+Authors: Alex Bewley, Zongyuan Ge, Lionel Ott, Fabio Ramos, Ben Upcroft
+[arXiv](https://arxiv.org/pdf/1602.00763.pdf)
+
+* Real-Time Multiple Object Tracking - A Study on the Importance of Speed
+Samuel Murray (Thesis)
+[arXiv](https://arxiv.org/pdf/1709.03572.pdf)
