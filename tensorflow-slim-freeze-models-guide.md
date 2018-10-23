@@ -65,6 +65,9 @@ python export_inference_graph.py \
   --output_file=/tmp/lenet_inference_graph.pb \
   --dataset_name=mnist
   # For Lenet model, specify the dataset for correct `num_classes` in output inference graph
+  # For MNIST or other dataset with number of channels other than 3, 
+  # must modify export_inference_graph.py at L114-116 to take an 
+  # additional command_line input : FLAGS.num_channels=1
 ```
 
 #### VGG/ResNet
